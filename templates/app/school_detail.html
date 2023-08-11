@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(to right, #ff6e7f, #bfe9ff);
+        }
+        h1{
+            text-decoration: underline;
+            font-weight: 600;
+            margin-bottom: 50px;
+        }
+        table{
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        tr{
+            border-bottom: 1px solid black;
+            transition: .3s;
+        }
+        tr:hover{
+            transform: translate(15px);
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            font-size: 1.3em;
+
+        }
+        button{
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: -10px 10px 20px black;
+            transition: .3s;
+        }
+        button:hover{
+            box-shadow: 0 0 0 black;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <center>
+        <h1>details of {{SDO.school_name}}</h1>
+
+        <table cellpadding="15">
+            <tr>
+                <th>School Name</th>
+                <th>School Principal</th>
+                <th>School Location</th>
+            </tr>
+            <tr>
+                <td>{{SDO.school_name}}</td>
+                <td>{{SDO.school_principal}}</td>
+                <td>{{SDO.school_location}}</td>
+            </tr>
+        </table>
+    
+        <h1>Student details</h1>
+
+        <table cellpadding="15">
+            <tr>
+                <th>Student Name</th>
+                <th>Student Age</th>
+            </tr>
+            {% for i in SDO.tushar.all %}   <!-- By using related name -->
+            <tr>
+                <td>{{i.student_name}}</td>
+                <td>{{i.student_age}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <button><a href="{% url 'update' pk=SDO.pk %}">Update</a></button>
+
+        <button><a href="{% url 'delete' pk=SDO.pk %}">Delete</a></button>
+    </center>
+
+</body>
+</html>
